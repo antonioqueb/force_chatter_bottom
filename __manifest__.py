@@ -7,7 +7,7 @@
     'depends': ['web', 'mail'],
     'assets': {
         'web.assets_backend': [
-            'force_chatter_bottom/static/src/js/force_chatter_bottom.js',
+            'force_chatter_bottom/static/src/js/chatter_bottom.js',
             'force_chatter_bottom/static/src/scss/chatter_bottom.scss',
         ],
     },

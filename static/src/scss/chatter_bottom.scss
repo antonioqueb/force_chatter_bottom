@@ -1,23 +1,36 @@
+/* 1) En XXL, el form view es flex. Forzamos wrap para que haya "segunda fila". */
 @media (min-width: 1534px) {
-  /* Evita layout lateral en XXL */
   .o_form_view.o_xxl_form_view {
-    flex-direction: column !important;
+    flex-flow: row wrap !important;
   }
 
-  /* Asegura que el formulario ocupa el ancho completo */
+  /* 2) Recupera el ancho del formulario (si no, queda “hueco” para el aside). */
   .o_form_view.o_xxl_form_view .o_form_view_container,
-  .o_form_view.o_xxl_form_view .o_form_sheet_bg,
-  .o_form_view.o_xxl_form_view .o_form_sheet_bg > .o_form_sheet {
+  .o_form_view.o_xxl_form_view .o_form_sheet_bg {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  /* 3) El chatter a fuerza a la siguiente “fila”. */
+  .o_form_view.o_xxl_form_view .o_force_chatter_bottom {
+    flex: 0 0 100% !important;
     max-width: 100% !important;
     width: 100% !important;
+    order: 9999 !important; /* lo manda hasta abajo */
   }
+}
 
-  /* Estética del chatter abajo */
-  .o_form_view.o_xxl_form_view .o-mail-Form-chatter,
-  .o_form_view.o_xxl_form_view .o-mail-ChatterContainer {
-    border-left: none !important;
-    border-top: 1px solid var(--o-gray-300, #dee2e6) !important;
-    margin-top: 16px !important;
-    padding-top: 8px !important;
-  }
+/* Estética / separador */
+.o_force_chatter_bottom {
+  border-left: none !important;
+  border-top: 1px solid var(--o-gray-300, #dee2e6) !important;
+  margin-top: 16px !important;
+  padding-top: 8px !important;
+}
+
+/* Si por alguna razón Odoo sigue añadiendo .o-aside, lo neutralizamos */
+.o_force_chatter_bottom.o-aside {
+  height: auto !important;
+  max-height: none !important;
 }

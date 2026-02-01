@@ -1,0 +1,38 @@
+/* 
+    Odoo Responsive Force - Chatter Bottom 
+    Target: Odoo 17, 18, 19+
+*/
+
+/* Forzar que el contenedor del formulario sea siempre una columna vertical */
+.o_form_view {
+    flex-direction: column !important;
+}
+
+/* Ajustar el contenedor del chatter para que ocupe todo el ancho
+   y elimine el borde izquierdo que se usa cuando está al lado */
+.o_form_view .o_FormRenderer_chatterContainer {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-left: none !important;
+    margin-top: 20px !important; /* Separación estética */
+    padding: 0 15px !important;
+}
+
+/* Opcional: Centrar el contenido del chatter para que no se vea 
+   demasiado ancho en monitores gigantes, manteniendo la legibilidad */
+.o_form_view .o_FormRenderer_chatterContainer .o_Chatter {
+    max-width: 1140px; /* Ancho estándar de contenedor bootstrap */
+    margin: 0 auto;
+}
+
+/* Asegurar que la hoja del formulario (donde están los campos)
+   también ocupe el ancho disponible y no se quede restringida */
+.o_form_view .o_form_sheet_bg {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Ajuste fino para asegurar que la hoja blanca del formulario se centre */
+.o_form_view .o_form_sheet {
+    margin: 0 auto;
+}

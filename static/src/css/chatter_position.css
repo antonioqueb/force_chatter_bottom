@@ -1,16 +1,140 @@
-/* static/src/css/chatter_position.css */
+/* static/src/css/chatter_position.scss */
 
-/* Asegurar que cuando el chatter está abajo se vea correctamente */
-.o_form_view .o-mail-Form-chatter {
+/* Force Chatter to Bottom - Odoo 18/19 */
+/* Este archivo fuerza el chatter a posición inferior en todas las resoluciones */
+
+/* ===========================================================================
+   SOLUCIÓN PRINCIPAL: Forzar flex-wrap en el contenedor del form view
+   para que el chatter se mueva abajo cuando no hay espacio
+   =========================================================================== */
+
+/* Aplicar a todas las resoluciones incluyendo XXL (1534px+) */
+.o_form_view {
+    /* Forzar que el contenedor use flex-wrap */
+    &.o_xxl_form_view {
+        flex-flow: row wrap !important;
+        
+        /* El contenedor principal debe ocupar todo el ancho */
+        .o_form_view_container {
+            flex: 1 1 100% !important;
+            max-width: 100% !important;
+            min-width: 100% !important;
+        }
+    }
+}
+
+/* ===========================================================================
+   ESTILOS PARA EL CHATTER CUANDO TIENE CLASE .o-aside
+   =========================================================================== */
+
+/* Odoo 18/19: Clase o-mail-Form-chatter */
+.o-mail-Form-chatter.o-aside,
+.o-mail-ChatterContainer.o-aside {
+    /* Forzar ancho completo */
+    flex: 0 0 100% !important;
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 100% !important;
+    
+    /* Quitar altura fija que causa el aside */
+    height: auto !important;
+    max-height: none !important;
+    
+    /* Quitar el borde izquierdo del modo aside */
     border-left: none !important;
+    
+    /* Agregar borde superior como separador */
     border-top: 1px solid var(--o-gray-300, #dee2e6) !important;
     margin-top: 16px !important;
     padding-top: 8px !important;
+    
+    /* Permitir scroll normal */
+    overflow: visible !important;
+    overflow-y: auto !important;
 }
 
-/* Asegurar que el form sheet ocupe todo el ancho disponible */
-.o_form_view .o_form_sheet_bg > .o_form_sheet {
+/* Odoo 16/17: Clase o_FormRenderer_chatterContainer */
+.o_FormRenderer_chatterContainer.o-aside,
+.o_FormRenderer_chatterContainer.oe_chatter.o-aside {
+    flex: 0 0 100% !important;
+    width: 100% !important;
     max-width: 100% !important;
+    min-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    border-left: none !important;
+    border-top: 1px solid var(--o-gray-300, #dee2e6) !important;
+    margin-top: 16px !important;
+    margin-bottom: 50px !important;
+    overflow: visible !important;
+}
+
+/* ===========================================================================
+   FORM SHEET: Asegurar que ocupe todo el ancho disponible
+   =========================================================================== */
+
+.o_form_view.o_xxl_form_view {
+    .o_form_sheet_bg {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+        
+        > .o_form_sheet {
+            max-width: 100% !important;
+        }
+    }
+}
+
+/* ===========================================================================
+   MEDIA QUERY: Aplicar específicamente en pantallas XXL (1534px+)
+   Este es el breakpoint donde Odoo normalmente pone el chatter al lado
+   =========================================================================== */
+
+@media (min-width: 1534px) {
+    .o_form_view {
+        /* Forzar wrap para que el chatter vaya abajo */
+        flex-wrap: wrap !important;
+        
+        /* Asegurar que es row wrap, no nowrap */
+        flex-flow: row wrap !important;
+    }
+    
+    /* Contenedor del form debe ocupar 100% */
+    .o_form_view .o_form_view_container {
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+    }
+    
+    /* Chatter siempre 100% de ancho */
+    .o-mail-Form-chatter,
+    .o-mail-ChatterContainer,
+    .o_FormRenderer_chatterContainer {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        border-left: none !important;
+    }
+}
+
+/* ===========================================================================
+   FIX: Evitar que el chatter tenga altura fija cuando está abajo
+   =========================================================================== */
+
+.o_form_view .o-mail-Chatter {
+    max-height: none !important;
+}
+
+/* Asegurar scroll correcto en el chatter */
+.o-mail-Form-chatter .o-mail-Chatter,
+.o_FormRenderer_chatterContainer .o-mail-Chatter {
+    overflow-y: visible !important;
+    height: auto !important;
+}
+
+/* ===========================================================================
+   ENTERPRISE FIX: Algunas vistas de Enterprise tienen estilos adicionales
+   =========================================================================== */
+
+.o_web_client .o_action_manager .o_form_view.o_xxl_form_view {
+    flex-flow: row wrap !important;
 }

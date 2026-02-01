@@ -13,8 +13,7 @@
     'depends': ['mail'],
     'assets': {
         'web.assets_backend': [
-            'force_chatter_bottom/static/src/js/form_renderer.js',
-            'force_chatter_bottom/static/src/css/chatter_position.css',
+            'force_chatter_bottom/static/src/css/chatter_position.scss',
         ],
     },
     'license': 'LGPL-3',

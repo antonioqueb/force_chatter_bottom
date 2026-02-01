@@ -1,16 +1,26 @@
-.o_force_chatter_bottom {
-  width: 100% !important;
-  max-width: 100% !important;
-  border-left: none !important;
-  border-top: 1px solid var(--o-gray-300, #dee2e6) !important;
-  margin-top: 16px !important;
-  padding-top: 8px !important;
-}
+// force_chatter_bottom/static/src/scss/chatter_bottom.scss
 
-/* Si tu instancia trae reglas XXL que fuerzan estructura lateral,
-   este hack de layout suele ser necesario (depende del tema/enterprise). */
 @media (min-width: 1534px) {
+  // 1) Asegura que el form no se quede en layout “lado a lado”
   .o_form_view.o_xxl_form_view {
-    flex-flow: row wrap !important;
+    flex-direction: column !important; // patrón simple y efectivo :contentReference[oaicite:2]{index=2}
+  }
+
+  // 2) Recupera el ancho del formulario
+  .o_form_view.o_xxl_form_view .o_form_view_container {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 auto !important;
+  }
+
+  // 3) Chatter abajo y a lo ancho (sin “modo aside”)
+  .o_form_view.o_xxl_form_view .o-mail-Form-chatter,
+  .o_form_view.o_xxl_form_view .o-mail-ChatterContainer {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-left: none !important;
+    border-top: 1px solid var(--o-gray-300, #dee2e6) !important;
+    margin-top: 16px !important;
+    padding-top: 8px !important;
   }
 }

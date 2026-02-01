@@ -1,23 +1,20 @@
-// force_chatter_bottom/static/src/scss/chatter_bottom.scss
-
 @media (min-width: 1534px) {
-  // 1) Asegura que el form no se quede en layout “lado a lado”
+  /* Evita layout lateral en XXL */
   .o_form_view.o_xxl_form_view {
-    flex-direction: column !important; // patrón simple y efectivo :contentReference[oaicite:2]{index=2}
+    flex-direction: column !important;
   }
 
-  // 2) Recupera el ancho del formulario
-  .o_form_view.o_xxl_form_view .o_form_view_container {
-    width: 100% !important;
+  /* Asegura que el formulario ocupa el ancho completo */
+  .o_form_view.o_xxl_form_view .o_form_view_container,
+  .o_form_view.o_xxl_form_view .o_form_sheet_bg,
+  .o_form_view.o_xxl_form_view .o_form_sheet_bg > .o_form_sheet {
     max-width: 100% !important;
-    flex: 1 1 auto !important;
+    width: 100% !important;
   }
 
-  // 3) Chatter abajo y a lo ancho (sin “modo aside”)
+  /* Estética del chatter abajo */
   .o_form_view.o_xxl_form_view .o-mail-Form-chatter,
   .o_form_view.o_xxl_form_view .o-mail-ChatterContainer {
-    width: 100% !important;
-    max-width: 100% !important;
     border-left: none !important;
     border-top: 1px solid var(--o-gray-300, #dee2e6) !important;
     margin-top: 16px !important;

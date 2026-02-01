@@ -1,9 +1,16 @@
-.o-mail-Form-chatter,
-.o-mail-ChatterContainer {
-  max-width: 100% !important;
+.o_force_chatter_bottom {
   width: 100% !important;
+  max-width: 100% !important;
   border-left: none !important;
   border-top: 1px solid var(--o-gray-300, #dee2e6) !important;
   margin-top: 16px !important;
   padding-top: 8px !important;
+}
+
+/* Si tu instancia trae reglas XXL que fuerzan estructura lateral,
+   este hack de layout suele ser necesario (depende del tema/enterprise). */
+@media (min-width: 1534px) {
+  .o_form_view.o_xxl_form_view {
+    flex-flow: row wrap !important;
+  }
 }

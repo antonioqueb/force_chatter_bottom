@@ -1,51 +1,16 @@
-/* Force Chatter to Bottom - Odoo 19 */
+/* static/src/css/chatter_position.css */
 
-/* Anular el breakpoint XXL que pone el chatter al lado */
-@media (min-width: 1534px) {
-    /* El form_sheet_bg es el contenedor flex */
-    .o_form_view .o_form_sheet_bg {
-        flex-wrap: wrap !important;
-    }
-    
-    /* El sheet debe tomar 100% del ancho */
-    .o_form_view .o_form_sheet_bg > .o_form_sheet {
-        flex: 0 0 100% !important;
-        max-width: 100% !important;
-    }
-    
-    /* El chatter pierde el comportamiento o-aside */
-    .o_form_view .o_form_sheet_bg > .o-mail-Form-chatter {
-        flex: 0 0 100% !important;
-        max-width: 100% !important;
-        width: 100% !important;
-    }
-}
-
-/* Quitar estilos específicos de o-aside en cualquier tamaño */
-.o-mail-Form-chatter.o-aside {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
+/* Asegurar que cuando el chatter está abajo se vea correctamente */
+.o_form_view .o-mail-Form-chatter {
     width: 100% !important;
-    height: auto !important;
+    max-width: 100% !important;
     border-left: none !important;
-    border-top: 1px solid #dee2e6 !important;
-    padding-top: 12px !important;
-    margin-top: 8px !important;
+    border-top: 1px solid var(--o-gray-300, #dee2e6) !important;
+    margin-top: 16px !important;
+    padding-top: 8px !important;
 }
 
-/* Quitar h-100 y overflow del chatter interno */
-.o-mail-Form-chatter.o-aside > .o-mail-Chatter {
-    height: auto !important;
-    overflow: visible !important;
-}
-
-/* El form view XXL no debe tener altura fija */
-.o_form_view.o_xxl_form_view {
-    height: auto !important;
-    min-height: 100% !important;
-}
-
-.o_form_view.o_xxl_form_view .o_form_sheet_bg {
-    flex-wrap: wrap !important;
-    height: auto !important;
+/* Asegurar que el form sheet ocupe todo el ancho disponible */
+.o_form_view .o_form_sheet_bg > .o_form_sheet {
+    max-width: 100% !important;
 }

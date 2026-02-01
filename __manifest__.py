@@ -1,3 +1,4 @@
+# __manifest__.py
 {
     'name': 'Force Chatter to Bottom',
     'version': '19.0.1.0.0',
@@ -6,14 +7,13 @@
     'description': """
         Este módulo fuerza al sistema a mostrar siempre el widget de Chatter 
         (mensajes y notas) en la parte inferior de la vista formulario, 
-        incluso en monitores anchos (pantallas XXL), evitando que se divida 
-        la pantalla en dos columnas.
+        incluso en monitores anchos (pantallas XXL).
     """,
-    'author': 'Assistant',
-    'depends': ['web'],
-    'data': [],
+    'author': 'Alphaqueb Consulting',
+    'depends': ['mail'],
     'assets': {
         'web.assets_backend': [
+            'force_chatter_bottom/static/src/js/form_renderer.js',
             'force_chatter_bottom/static/src/css/chatter_position.css',
         ],
     },

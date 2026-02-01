@@ -1,58 +1,51 @@
 /* Force Chatter to Bottom - Odoo 19 */
 
-/* Resetear el height del form view XXL */
+/* Anular el breakpoint XXL que pone el chatter al lado */
+@media (min-width: 1534px) {
+    /* El form_sheet_bg es el contenedor flex */
+    .o_form_view .o_form_sheet_bg {
+        flex-wrap: wrap !important;
+    }
+    
+    /* El sheet debe tomar 100% del ancho */
+    .o_form_view .o_form_sheet_bg > .o_form_sheet {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* El chatter pierde el comportamiento o-aside */
+    .o_form_view .o_form_sheet_bg > .o-mail-Form-chatter {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+
+/* Quitar estilos específicos de o-aside en cualquier tamaño */
+.o-mail-Form-chatter.o-aside {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    border-left: none !important;
+    border-top: 1px solid #dee2e6 !important;
+    padding-top: 12px !important;
+    margin-top: 8px !important;
+}
+
+/* Quitar h-100 y overflow del chatter interno */
+.o-mail-Form-chatter.o-aside > .o-mail-Chatter {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* El form view XXL no debe tener altura fija */
 .o_form_view.o_xxl_form_view {
     height: auto !important;
     min-height: 100% !important;
 }
 
-/* El sheet_bg debe ser flex-wrap */
 .o_form_view.o_xxl_form_view .o_form_sheet_bg {
     flex-wrap: wrap !important;
     height: auto !important;
-    min-height: auto !important;
-}
-
-/* El sheet toma todo el ancho */
-.o_form_view.o_xxl_form_view .o_form_sheet_bg > .o_form_sheet {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: 0 0 100% !important;
-}
-
-/* CLAVE: Neutralizar completamente o-aside */
-.o_form_view .o-mail-Form-chatter.o-aside,
-.o_form_view.o_xxl_form_view .o-mail-Form-chatter.o-aside,
-.o_form_view.o_xxl_form_view .o_form_sheet_bg > .o-mail-Form-chatter.o-aside {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 100% !important;
-    flex: 0 0 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    min-height: auto !important;
-    border-left: none !important;
-    border-top: 1px solid #dee2e6 !important;
-    margin-top: 16px !important;
-    padding-top: 8px !important;
-    overflow: visible !important;
-    flex-grow: 0 !important;
-    flex-shrink: 0 !important;
-}
-
-/* El chatter interno */
-.o_form_view .o-mail-Form-chatter.o-aside > .o-mail-Chatter {
-    height: auto !important;
-    max-height: none !important;
-    min-height: auto !important;
-    overflow: visible !important;
-    flex-grow: 0 !important;
-}
-
-/* El thread del chatter */
-.o_form_view .o-mail-Form-chatter.o-aside .o-mail-Thread {
-    max-height: 500px !important;
-    overflow-y: auto !important;
-    flex-grow: 0 !important;
 }
